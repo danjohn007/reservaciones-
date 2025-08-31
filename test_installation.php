@@ -84,7 +84,7 @@ try {
     echo "- Admin: admin@reservaciones.com / password\n";
     echo "- Comercio: comercio@reservaciones.com / password\n";
     echo "- Cliente: cliente@reservaciones.com / password\n\n";
-    echo "Access the system at: http://localhost/public/\n";
+    echo "Access the system at: " . BASE_URL . "\n";
     
 } catch (Exception $e) {
     echo "✗ FAILED - " . $e->getMessage() . "\n";

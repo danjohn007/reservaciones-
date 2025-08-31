@@ -16,7 +16,7 @@
                 <span class="navbar-text me-3">
                     <i class="fas fa-user"></i> <?php echo $_SESSION['user_name']; ?> (Cliente)
                 </span>
-                <a class="nav-link" href="/public/index.php?page=logout">
+                <a class="nav-link" href="<?php echo getUrl('index.php?page=logout'); ?>">
                     <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                 </a>
             </div>
@@ -53,7 +53,7 @@
                         <i class="fas fa-calendar-plus fa-3x text-primary mb-3"></i>
                         <h5 class="card-title">Nueva Reservación</h5>
                         <p class="card-text">Haga una reservación para mesa o amenidad</p>
-                        <a href="/public/index.php?page=form&type=reservacion" class="btn btn-primary">
+                        <a href="<?php echo getUrl('index.php?page=form&type=reservacion'); ?>" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Crear Reservación
                         </a>
                     </div>
@@ -65,7 +65,7 @@
                         <i class="fas fa-shopping-cart fa-3x text-success mb-3"></i>
                         <h5 class="card-title">Comprar Productos</h5>
                         <p class="card-text">Ordene productos para pickup o domicilio</p>
-                        <a href="/public/index.php?page=form&type=compra" class="btn btn-success">
+                        <a href="<?php echo getUrl('index.php?page=form&type=compra'); ?>" class="btn btn-success">
                             <i class="fas fa-shopping-bag"></i> Hacer Compra
                         </a>
                     </div>
@@ -77,7 +77,7 @@
                         <i class="fas fa-concierge-bell fa-3x text-warning mb-3"></i>
                         <h5 class="card-title">Solicitar Servicio</h5>
                         <p class="card-text">Solicite servicios personalizados</p>
-                        <a href="/public/index.php?page=form&type=servicio" class="btn btn-warning">
+                        <a href="<?php echo getUrl('index.php?page=form&type=servicio'); ?>" class="btn btn-warning">
                             <i class="fas fa-bell"></i> Solicitar Servicio
                         </a>
                     </div>
@@ -147,7 +147,7 @@
                                                 </td>
                                                 <td>$<?php echo number_format($reservacion['costo_total'], 2); ?></td>
                                                 <td>
-                                                    <a href="/public/index.php?page=reservacion&action=view&id=<?php echo $reservacion['id']; ?>" 
+                                                    <a href="<?php echo getUrl('index.php?page=reservacion&action=view&id=<?php echo $reservacion['id']; ?>'); ?>" 
                                                        class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-eye"></i> Ver
                                                     </a>
@@ -206,7 +206,7 @@
                                                 </td>
                                                 <td>$<?php echo number_format($compra['costo_total'], 2); ?></td>
                                                 <td>
-                                                    <a href="/public/index.php?page=compra&action=view&id=<?php echo $compra['id']; ?>" 
+                                                    <a href="<?php echo getUrl('index.php?page=compra&action=view&id=<?php echo $compra['id']; ?>'); ?>" 
                                                        class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-eye"></i> Ver
                                                     </a>
@@ -261,7 +261,7 @@
                                                 </td>
                                                 <td>$<?php echo number_format($servicio['costo_total'], 2); ?></td>
                                                 <td>
-                                                    <a href="/public/index.php?page=servicio&action=view&id=<?php echo $servicio['id']; ?>" 
+                                                    <a href="<?php echo getUrl('index.php?page=servicio&action=view&id=<?php echo $servicio['id']; ?>'); ?>" 
                                                        class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-eye"></i> Ver
                                                     </a>

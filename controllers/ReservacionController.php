@@ -19,14 +19,14 @@ class ReservacionController {
             // Validaciones
             if (empty($fecha_reservacion) || empty($hora_reservacion) || empty($numero_personas)) {
                 $_SESSION['error'] = 'Por favor complete todos los campos obligatorios';
-                header('Location: /public/index.php?page=form&type=reservacion');
+                header('Location: ' . getUrl('index.php?page=form&type=reservacion'));
                 exit;
             }
             
             // Validar que la fecha no sea en el pasado
             if (strtotime($fecha_reservacion) < strtotime(date('Y-m-d'))) {
                 $_SESSION['error'] = 'No puede hacer reservaciones para fechas pasadas';
-                header('Location: /public/index.php?page=form&type=reservacion');
+                header('Location: ' . getUrl('index.php?page=form&type=reservacion'));
                 exit;
             }
             
@@ -48,11 +48,11 @@ class ReservacionController {
                 $actividad->create();
                 
                 $_SESSION['success'] = 'Reservación creada exitosamente';
-                header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
                 exit;
             } else {
                 $_SESSION['error'] = 'Error al crear la reservación';
-                header('Location: /public/index.php?page=form&type=reservacion');
+                header('Location: ' . getUrl('index.php?page=form&type=reservacion'));
                 exit;
             }
         }
@@ -72,14 +72,14 @@ class ReservacionController {
         
         if (!$data) {
             $_SESSION['error'] = 'Reservación no encontrada';
-            header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+            header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
             exit;
         }
         
         // Verificar permisos
         if ($_SESSION['user_type'] === 'cliente' && $data['usuario_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = 'No tiene permisos para ver esta reservación';
-            header('Location: /public/index.php?page=dashboard&type=cliente');
+            header('Location: ' . getUrl('index.php?page=dashboard&type=cliente'));
             exit;
         }
         
@@ -107,7 +107,7 @@ class ReservacionController {
             
             if (!$data || ($_SESSION['user_type'] === 'cliente' && $data['usuario_id'] != $_SESSION['user_id'])) {
                 $_SESSION['error'] = 'Reservación no encontrada o sin permisos';
-                header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
                 exit;
             }
             
@@ -115,13 +115,13 @@ class ReservacionController {
             $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
             if (!in_array($file['type'], $allowed_types)) {
                 $_SESSION['error'] = 'Tipo de archivo no permitido. Use JPEG, PNG, GIF o PDF';
-                header('Location: /public/index.php?page=reservacion&action=view&id=' . $id);
+                header('Location: ' . getUrl('index.php?page=reservacion&action=view&id=' . $id);
                 exit;
             }
             
             if ($file['size'] > 5 * 1024 * 1024) { // 5MB
                 $_SESSION['error'] = 'El archivo es muy grande. Máximo 5MB';
-                header('Location: /public/index.php?page=reservacion&action=view&id=' . $id);
+                header('Location: ' . getUrl('index.php?page=reservacion&action=view&id=' . $id);
                 exit;
             }
             
@@ -160,7 +160,7 @@ class ReservacionController {
                 $_SESSION['error'] = 'Error al subir el archivo';
             }
             
-            header('Location: /public/index.php?page=reservacion&action=view&id=' . $id);
+            header('Location: ' . getUrl('index.php?page=reservacion&action=view&id=' . $id);
             exit;
         }
     }

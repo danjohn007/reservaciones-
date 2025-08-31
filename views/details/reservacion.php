@@ -13,10 +13,10 @@
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-calendar-check"></i> Detalles de Reservación</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/public/index.php?page=dashboard&type=<?php echo $_SESSION['user_type']; ?>">
+                <a class="nav-link" href="<?php echo getUrl('index.php?page=dashboard&type=<?php echo $_SESSION['user_type']; ?>'); ?>">
                     <i class="fas fa-arrow-left"></i> Volver al Dashboard
                 </a>
-                <a class="nav-link" href="/public/index.php?page=logout">
+                <a class="nav-link" href="<?php echo getUrl('index.php?page=logout'); ?>">
                     <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                 </a>
             </div>
@@ -139,7 +139,7 @@
                             <h5><i class="fas fa-upload"></i> Subir Comprobante</h5>
                         </div>
                         <div class="card-body">
-                            <form action="/public/index.php?page=reservacion&action=upload" method="POST" enctype="multipart/form-data">
+                            <form action="<?php echo getUrl('index.php?page=reservacion&action=upload'); ?>" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="reservacion_id" value="<?php echo $data['id']; ?>">
                                 <div class="mb-3">
                                     <label for="comprobante" class="form-label">Archivo de Comprobante</label>
@@ -163,7 +163,7 @@
                             <h5><i class="fas fa-cogs"></i> Gestionar Reservación</h5>
                         </div>
                         <div class="card-body">
-                            <form action="/public/index.php?page=update" method="POST">
+                            <form action="<?php echo getUrl('index.php?page=update'); ?>" method="POST">
                                 <input type="hidden" name="tipo" value="reservacion">
                                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                                 

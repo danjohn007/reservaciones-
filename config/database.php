@@ -41,8 +41,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Definir rutas base
-define('BASE_URL', 'http://localhost');
+define('BASE_URL', 'https://ejercitodigital.com.mx/aid/public/');
 define('UPLOAD_PATH', __DIR__ . '/../uploads/');
+
+// Función helper para generar URLs completas
+function getUrl($path = '') {
+    $baseUrl = rtrim(BASE_URL, '/');
+    $path = ltrim($path, '/');
+    return $baseUrl . ($path ? '/' . $path : '');
+}
 
 // Crear directorio de uploads si no existe
 if (!file_exists(UPLOAD_PATH)) {

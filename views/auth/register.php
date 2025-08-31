@@ -111,7 +111,7 @@
                         <hr>
                         
                         <div class="text-center">
-                            <p>¿Ya tiene cuenta? <a href="/public/index.php?page=login" class="btn btn-outline-primary btn-sm">Iniciar Sesión</a></p>
+                            <p>¿Ya tiene cuenta? <a href="<?php echo getUrl('index.php?page=login'); ?>" class="btn btn-outline-primary btn-sm">Iniciar Sesión</a></p>
                         </div>
                     </div>
                 </div>

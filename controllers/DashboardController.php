@@ -145,9 +145,9 @@ class DashboardController {
         
         // Redirigir de vuelta al dashboard
         if ($_SESSION['user_type'] === 'admin') {
-            header('Location: /public/index.php?page=dashboard&type=admin');
+            header('Location: ' . getUrl('index.php?page=dashboard&type=admin'));
         } else {
-            header('Location: /public/index.php?page=dashboard&type=comercio');
+            header('Location: ' . getUrl('index.php?page=dashboard&type=comercio'));
         }
         exit;
     }

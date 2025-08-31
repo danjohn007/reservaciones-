@@ -61,7 +61,7 @@ try {
                     $controller->create();
                     break;
                 default:
-                    header('Location: /public/index.php?page=dashboard&type=' . ($_SESSION['user_type'] ?? 'cliente'));
+                    header('Location: ' . getUrl('index.php?page=dashboard&type=' . ($_SESSION['user_type'] ?? 'cliente')));
                     exit;
             }
             break;
@@ -116,18 +116,18 @@ try {
         default:
             // Redirigir a login si no hay sesión, o al dashboard correspondiente
             if (isset($_SESSION['user_id'])) {
-                header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']));
             } else {
-                header('Location: /public/index.php?page=login');
+                header('Location: ' . getUrl('index.php?page=login'));
             }
             exit;
     }
 } catch (Exception $e) {
     $_SESSION['error'] = 'Error del sistema: ' . $e->getMessage();
     if (isset($_SESSION['user_id'])) {
-        header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+        header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']));
     } else {
-        header('Location: /public/index.php?page=login');
+        header('Location: ' . getUrl('index.php?page=login'));
     }
     exit;
 }
