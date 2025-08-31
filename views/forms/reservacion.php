@@ -13,10 +13,10 @@
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-calendar-check"></i> Nueva Reservación</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/public/index.php?page=dashboard&type=<?php echo $_SESSION['user_type']; ?>">
+                <a class="nav-link" href="<?php echo getUrl('index.php?page=dashboard&type=<?php echo $_SESSION['user_type']; ?>'); ?>">
                     <i class="fas fa-arrow-left"></i> Volver al Dashboard
                 </a>
-                <a class="nav-link" href="/public/index.php?page=logout">
+                <a class="nav-link" href="<?php echo getUrl('index.php?page=logout'); ?>">
                     <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                 </a>
             </div>
@@ -122,7 +122,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-calendar-plus"></i> Crear Reservación
                                 </button>
-                                <a href="/public/index.php?page=dashboard&type=<?php echo $_SESSION['user_type']; ?>" 
+                                <a href="<?php echo getUrl('index.php?page=dashboard&type=<?php echo $_SESSION['user_type']; ?>'); ?>" 
                                    class="btn btn-outline-secondary">
                                     <i class="fas fa-arrow-left"></i> Cancelar
                                 </a>

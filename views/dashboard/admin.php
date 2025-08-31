@@ -17,7 +17,7 @@
                 <span class="navbar-text me-3">
                     <i class="fas fa-user-shield"></i> <?php echo $_SESSION['user_name']; ?> (Admin)
                 </span>
-                <a class="nav-link" href="/public/index.php?page=logout">
+                <a class="nav-link" href="<?php echo getUrl('index.php?page=logout'); ?>">
                     <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                 </a>
             </div>
@@ -195,7 +195,7 @@
                                                 <td>$<?php echo number_format($reservacion['costo_total'], 2); ?></td>
                                                 <td><?php echo $reservacion['personal_nombre'] ?? 'Sin asignar'; ?></td>
                                                 <td>
-                                                    <a href="/public/index.php?page=reservacion&action=view&id=<?php echo $reservacion['id']; ?>" 
+                                                    <a href="<?php echo getUrl('index.php?page=reservacion&action=view&id=<?php echo $reservacion['id']; ?>'); ?>" 
                                                        class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
@@ -262,7 +262,7 @@
                                                 <td>$<?php echo number_format($compra['costo_total'], 2); ?></td>
                                                 <td><?php echo $compra['personal_nombre'] ?? 'Sin asignar'; ?></td>
                                                 <td>
-                                                    <a href="/public/index.php?page=compra&action=view&id=<?php echo $compra['id']; ?>" 
+                                                    <a href="<?php echo getUrl('index.php?page=compra&action=view&id=<?php echo $compra['id']; ?>'); ?>" 
                                                        class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
@@ -327,7 +327,7 @@
                                                 <td>$<?php echo number_format($servicio['costo_total'], 2); ?></td>
                                                 <td><?php echo $servicio['personal_nombre'] ?? 'Sin asignar'; ?></td>
                                                 <td>
-                                                    <a href="/public/index.php?page=servicio&action=view&id=<?php echo $servicio['id']; ?>" 
+                                                    <a href="<?php echo getUrl('index.php?page=servicio&action=view&id=<?php echo $servicio['id']; ?>'); ?>" 
                                                        class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
@@ -356,7 +356,7 @@
                     <h5 class="modal-title">Actualizar Solicitud</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form action="/public/index.php?page=update" method="POST">
+                <form action="<?php echo getUrl('index.php?page=update'); ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="tipo" id="modal_tipo">
                         <input type="hidden" name="id" id="modal_id">

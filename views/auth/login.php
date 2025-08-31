@@ -56,7 +56,7 @@
                         <hr>
                         
                         <div class="text-center">
-                            <p>¿No tiene cuenta? <a href="/public/index.php?page=register" class="btn btn-outline-secondary btn-sm">Registrarse</a></p>
+                            <p>¿No tiene cuenta? <a href="<?php echo getUrl('index.php?page=register'); ?>" class="btn btn-outline-secondary btn-sm">Registrarse</a></p>
                         </div>
                         
                         <div class="card mt-3">

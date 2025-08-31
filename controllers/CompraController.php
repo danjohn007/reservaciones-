@@ -21,20 +21,20 @@ class CompraController {
             // Validaciones
             if (empty($tipo_entrega) || empty($fecha_entrega) || empty($hora_entrega) || empty($productos)) {
                 $_SESSION['error'] = 'Por favor complete todos los campos obligatorios y seleccione al menos un producto';
-                header('Location: /public/index.php?page=form&type=compra');
+                header('Location: ' . getUrl('index.php?page=form&type=compra'));
                 exit;
             }
             
             if ($tipo_entrega === 'domicilio' && empty($direccion_entrega)) {
                 $_SESSION['error'] = 'La dirección de entrega es obligatoria para envío a domicilio';
-                header('Location: /public/index.php?page=form&type=compra');
+                header('Location: ' . getUrl('index.php?page=form&type=compra'));
                 exit;
             }
             
             // Validar que la fecha no sea en el pasado
             if (strtotime($fecha_entrega) < strtotime(date('Y-m-d'))) {
                 $_SESSION['error'] = 'No puede programar entregas para fechas pasadas';
-                header('Location: /public/index.php?page=form&type=compra');
+                header('Location: ' . getUrl('index.php?page=form&type=compra'));
                 exit;
             }
             
@@ -86,13 +86,13 @@ class CompraController {
                     $actividad->create();
                     
                     $_SESSION['success'] = 'Compra creada exitosamente';
-                    header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                    header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
                     exit;
                 }
             }
             
             $_SESSION['error'] = $_SESSION['error'] ?? 'Error al crear la compra';
-            header('Location: /public/index.php?page=form&type=compra');
+            header('Location: ' . getUrl('index.php?page=form&type=compra'));
             exit;
         }
         
@@ -111,14 +111,14 @@ class CompraController {
         
         if (!$data) {
             $_SESSION['error'] = 'Compra no encontrada';
-            header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+            header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
             exit;
         }
         
         // Verificar permisos
         if ($_SESSION['user_type'] === 'cliente' && $data['usuario_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = 'No tiene permisos para ver esta compra';
-            header('Location: /public/index.php?page=dashboard&type=cliente');
+            header('Location: ' . getUrl('index.php?page=dashboard&type=cliente'));
             exit;
         }
         
@@ -149,7 +149,7 @@ class CompraController {
             
             if (!$data || ($_SESSION['user_type'] === 'cliente' && $data['usuario_id'] != $_SESSION['user_id'])) {
                 $_SESSION['error'] = 'Compra no encontrada o sin permisos';
-                header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
                 exit;
             }
             
@@ -157,13 +157,13 @@ class CompraController {
             $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
             if (!in_array($file['type'], $allowed_types)) {
                 $_SESSION['error'] = 'Tipo de archivo no permitido. Use JPEG, PNG, GIF o PDF';
-                header('Location: /public/index.php?page=compra&action=view&id=' . $id);
+                header('Location: ' . getUrl('index.php?page=compra&action=view&id=' . $id);
                 exit;
             }
             
             if ($file['size'] > 5 * 1024 * 1024) { // 5MB
                 $_SESSION['error'] = 'El archivo es muy grande. Máximo 5MB';
-                header('Location: /public/index.php?page=compra&action=view&id=' . $id);
+                header('Location: ' . getUrl('index.php?page=compra&action=view&id=' . $id);
                 exit;
             }
             
@@ -202,7 +202,7 @@ class CompraController {
                 $_SESSION['error'] = 'Error al subir el archivo';
             }
             
-            header('Location: /public/index.php?page=compra&action=view&id=' . $id);
+            header('Location: ' . getUrl('index.php?page=compra&action=view&id=' . $id);
             exit;
         }
     }
@@ -224,14 +224,14 @@ class ServicioController {
             // Validaciones
             if (empty($fecha_servicio) || empty($hora_servicio) || empty($descripcion_servicio)) {
                 $_SESSION['error'] = 'Por favor complete todos los campos obligatorios';
-                header('Location: /public/index.php?page=form&type=servicio');
+                header('Location: ' . getUrl('index.php?page=form&type=servicio'));
                 exit;
             }
             
             // Validar que la fecha no sea en el pasado
             if (strtotime($fecha_servicio) < strtotime(date('Y-m-d'))) {
                 $_SESSION['error'] = 'No puede solicitar servicios para fechas pasadas';
-                header('Location: /public/index.php?page=form&type=servicio');
+                header('Location: ' . getUrl('index.php?page=form&type=servicio'));
                 exit;
             }
             
@@ -254,11 +254,11 @@ class ServicioController {
                 $actividad->create();
                 
                 $_SESSION['success'] = 'Servicio solicitado exitosamente';
-                header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
                 exit;
             } else {
                 $_SESSION['error'] = 'Error al solicitar el servicio';
-                header('Location: /public/index.php?page=form&type=servicio');
+                header('Location: ' . getUrl('index.php?page=form&type=servicio'));
                 exit;
             }
         }
@@ -278,14 +278,14 @@ class ServicioController {
         
         if (!$data) {
             $_SESSION['error'] = 'Servicio no encontrado';
-            header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+            header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
             exit;
         }
         
         // Verificar permisos
         if ($_SESSION['user_type'] === 'cliente' && $data['usuario_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = 'No tiene permisos para ver este servicio';
-            header('Location: /public/index.php?page=dashboard&type=cliente');
+            header('Location: ' . getUrl('index.php?page=dashboard&type=cliente'));
             exit;
         }
         
@@ -313,7 +313,7 @@ class ServicioController {
             
             if (!$data || ($_SESSION['user_type'] === 'cliente' && $data['usuario_id'] != $_SESSION['user_id'])) {
                 $_SESSION['error'] = 'Servicio no encontrado o sin permisos';
-                header('Location: /public/index.php?page=dashboard&type=' . $_SESSION['user_type']);
+                header('Location: ' . getUrl('index.php?page=dashboard&type=' . $_SESSION['user_type']);
                 exit;
             }
             
@@ -321,13 +321,13 @@ class ServicioController {
             $allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
             if (!in_array($file['type'], $allowed_types)) {
                 $_SESSION['error'] = 'Tipo de archivo no permitido. Use JPEG, PNG, GIF o PDF';
-                header('Location: /public/index.php?page=servicio&action=view&id=' . $id);
+                header('Location: ' . getUrl('index.php?page=servicio&action=view&id=' . $id);
                 exit;
             }
             
             if ($file['size'] > 5 * 1024 * 1024) { // 5MB
                 $_SESSION['error'] = 'El archivo es muy grande. Máximo 5MB';
-                header('Location: /public/index.php?page=servicio&action=view&id=' . $id);
+                header('Location: ' . getUrl('index.php?page=servicio&action=view&id=' . $id);
                 exit;
             }
             
@@ -366,7 +366,7 @@ class ServicioController {
                 $_SESSION['error'] = 'Error al subir el archivo';
             }
             
-            header('Location: /public/index.php?page=servicio&action=view&id=' . $id);
+            header('Location: ' . getUrl('index.php?page=servicio&action=view&id=' . $id);
             exit;
         }
     }
